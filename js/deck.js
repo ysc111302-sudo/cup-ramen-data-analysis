@@ -29,6 +29,11 @@
     grid: { color: GRID, drawBorder: false },
     ticks: { color: MUTED, font: { size: 15 } }
   };
+  // bars grow one after another so the audience follows the order
+  const barAnim = (dur = 900, step = 70) => ({
+    duration: STATIC ? 0 : dur,
+    delay: ctx => (ctx.type === 'data' && ctx.mode === 'default' ? ctx.dataIndex * step : 0)
+  });
 
   const products = DATA.products;
   const valid = products.filter(p => !p.is_outlier);
@@ -51,24 +56,43 @@
   /* ---------------- chart builders ---------------- */
   const builders = {
     chartBrands() {
-      const counts = {};
-      products.forEach(p => counts[p.브랜드] = (counts[p.브랜드] || 0) + 1);
-      const labels = Object.keys(counts);
+      const labels = ['농심', '오뚜기', '삼양', '팔도'];
+      const counts = labels.map(b => products.filter(p => p.브랜드 === b).length);
       return new Chart(document.getElementById('chartBrands'), {
-        type: 'doughnut',
+        type: 'bar',
         data: {
           labels,
-          datasets: [{ data: labels.map(l => counts[l]),
-            backgroundColor: labels.map(l => BRAND_COLOR[l]),
-            borderColor: '#241a15', borderWidth: 4, hoverOffset: 10 }]
+          datasets: [{ data: counts, backgroundColor: labels.map(l => BRAND_COLOR[l]),
+            borderRadius: 8, maxBarThickness: 46 }]
         },
         options: {
-          responsive: true, maintainAspectRatio: false, cutout: '58%',
-          plugins: {
-            legend: { position: 'right' },
-            tooltip: { callbacks: { label: c => ` ${c.label} · ${c.parsed}종` } }
-          },
-          animation: { animateRotate: true, duration: 1100 }
+          indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+          plugins: { legend: { display: false },
+            tooltip: { callbacks: { label: c => ` ${c.label} ${c.parsed.x}종` } } },
+          scales: { x: { ...axis, beginAtZero: true, title: { display: true, text: '제품 수 (종)', color: CREAM } },
+                    y: { grid: { display: false }, ticks: { color: CREAM, font: { size: 17 } } } },
+          animation: barAnim(800, 90)
+        }
+      });
+    },
+
+    chartSources() {
+      const col = (DATA.collection || []).slice();
+      return new Chart(document.getElementById('chartSources'), {
+        type: 'bar',
+        data: {
+          labels: col.map(c => c.site),
+          datasets: [{ data: col.map(c => c.collected),
+            backgroundColor: col.map((c, i) => ['#E23B2E', '#F7A531', '#FFD166', '#2A9D8F', '#8AC926'][i % 5]),
+            borderRadius: 8, maxBarThickness: 34 }]
+        },
+        options: {
+          indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+          plugins: { legend: { display: false },
+            tooltip: { callbacks: { label: c => ` 후보 ${c.parsed.x}건` } } },
+          scales: { x: { ...axis, beginAtZero: true, title: { display: true, text: '수집 후보 (건)', color: CREAM } },
+                    y: { grid: { display: false }, ticks: { color: CREAM, font: { size: 16 } } } },
+          animation: barAnim(800, 90)
         }
       });
     },
@@ -86,7 +110,7 @@
             tooltip: { callbacks: { label: c => ` 평균 ${nice(c.parsed.y)}원` } } },
           scales: { x: axis, y: { ...axis, beginAtZero: true, suggestedMax: 1800,
             ticks: { color: MUTED, callback: v => v.toLocaleString() } } },
-          animation: { duration: 1000 }
+          animation: barAnim()
         }
       });
     },
@@ -104,7 +128,7 @@
             tooltip: { callbacks: { label: c => ` 100g당 ${nice(c.parsed.y)}원` } } },
           scales: { x: axis, y: { ...axis, beginAtZero: true, suggestedMax: 2000,
             ticks: { color: MUTED, callback: v => v.toLocaleString() } } },
-          animation: { duration: 1000 }
+          animation: barAnim()
         }
       });
     },
@@ -154,7 +178,7 @@
             tooltip: { callbacks: { label: c => ` ${c.parsed.x}kcal` } } },
           scales: { x: { ...axis, beginAtZero: true, title: { display: true, text: 'kcal (1회 제공량)', color: CREAM } },
                     y: { grid: { display: false }, ticks: { color: MUTED, font: { size: 14 } } } },
-          animation: { duration: 1000 }
+          animation: barAnim()
         }
       });
     },
@@ -172,7 +196,7 @@
             tooltip: { callbacks: { label: c => ` 평균 ${nice(c.parsed.y)}mg` } } },
           scales: { x: axis, y: { ...axis, beginAtZero: true, suggestedMax: 1700,
             ticks: { color: MUTED, callback: v => v.toLocaleString() } } },
-          animation: { duration: 1000 }
+          animation: barAnim()
         }
       });
     },
@@ -220,7 +244,7 @@
           plugins: { legend: { position: 'bottom' },
             tooltip: { callbacks: { label: c => ` ${c.dataset.label} ${c.parsed.y}g` } } },
           scales: { x: axis, y: { ...axis, beginAtZero: true, title: { display: true, text: '평균 (g)', color: CREAM } } },
-          animation: { duration: 1000 }
+          animation: barAnim()
         }
       });
     },
@@ -246,13 +270,14 @@
             tooltip: { callbacks: { label: c => ` ${nice(c.parsed.x)}원 / 100g` } } },
           scales: { x: { ...axis, beginAtZero: true, title: { display: true, text: '원 / 100g', color: CREAM } },
                     y: { grid: { display: false }, ticks: { color: MUTED, font: { size: 14 } } } },
-          animation: { duration: 1000 }
+          animation: barAnim()
         }
       });
     }
   };
 
   const SLIDE_CHARTS = {
+    2: ['chartSources'],
     3: ['chartBrands'],
     4: ['chartPrice', 'chartPrice100'],
     5: ['chartPriceWeight'],
@@ -262,6 +287,19 @@
     9: ['chartValue']
   };
 
+  const visited = new Set();
+  const ACT_ORDER = ['문제', '데이터', '분석', '발견', '결론'];
+  const SLIDE_ACT = ['문제', '문제', '데이터', '분석', '분석', '분석', '분석', '분석', '분석', '발견', '발견', '결론'];
+
+  function updateSteps(i) {
+    const cur = ACT_ORDER.indexOf(SLIDE_ACT[i]);
+    document.querySelectorAll('#steps span').forEach(sp => {
+      const k = ACT_ORDER.indexOf(sp.dataset.act);
+      sp.classList.toggle('on', k === cur);
+      sp.classList.toggle('done', k < cur);
+    });
+  }
+
   function ensureCharts(i) {
     (SLIDE_CHARTS[i] || []).forEach(id => {
       if (!charts[id] && builders[id]) {
@@ -270,6 +308,16 @@
           if (STATIC) { charts[id].options.animation = false; charts[id].update('none'); }
         } catch (e) { console.warn(id, e); }
       }
+    });
+  }
+
+  // replay the bar/point animation each time a slide is (re)entered
+  function replayCharts(i) {
+    if (STATIC) return;
+    (SLIDE_CHARTS[i] || []).forEach(id => {
+      const c = charts[id];
+      if (c && visited.has(id)) { c.reset(); c.update(); }
+      visited.add(id);
     });
   }
 
@@ -302,6 +350,8 @@
     progressBar.style.width = ((i + 1) / slides.length * 100) + '%';
     if (('#' + (i + 1)) !== location.hash) history.replaceState(null, '', '#' + (i + 1));
     ensureCharts(i);
+    replayCharts(i);
+    updateSteps(i);
     runCounts(slides[i]);
   }
 

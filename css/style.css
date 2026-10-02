@@ -148,3 +148,35 @@ html,body{height:100%;background:#0d0a09;overflow:hidden;font-family:"Pretendard
 body.static .reveal,body.static .s-head{animation:none!important;opacity:1!important;transform:none!important}
 body.static .slide{transition:none}
 body.static .cover-art img{animation:none}
+
+/* ================= presenter revisions ================= */
+.hl2{color:var(--yellow)}
+.s-head h2 b{font-weight:900}
+
+/* data-collection slide: graph-first */
+.pipeline{margin-bottom:26px;padding:38px 30px}
+.pipe-step .pipe-no{width:86px;height:86px;border-radius:50%;display:grid;place-items:center;font-size:30px;font-weight:900;color:#fff;background:linear-gradient(160deg,var(--red),var(--orange));box-shadow:0 12px 30px rgba(226,59,46,.35)}
+.collect-grid{grid-template-columns:1.2fr .8fr;gap:28px}
+.collect-side{justify-content:flex-start;gap:20px}
+
+/* fixed-height chart container (required for Chart.js responsive sizing) */
+.chart-box{position:relative;width:100%}
+.chart-box canvas{display:block}
+
+/* one-line interpretation under each chart */
+.chart-note{margin-top:14px;font-size:18px;line-height:1.4;color:var(--cream);
+  background:rgba(247,165,49,.10);border-left:3px solid var(--orange);
+  padding:11px 16px;border-radius:0 12px 12px 0}
+.chart-note b{color:var(--yellow)}
+
+/* key-insight headline banner */
+.key-banner{font-size:30px;font-weight:700;color:var(--muted);margin-bottom:26px;
+  padding:20px 28px;border-radius:18px;border:1px solid rgba(247,165,49,.35);
+  background:linear-gradient(90deg,rgba(226,59,46,.18),rgba(247,165,49,.08))}
+.key-banner b{color:var(--cream)}
+
+/* act / step indicator in HUD */
+.steps{display:flex;gap:6px;align-items:center;pointer-events:auto}
+.steps span{font-size:14px;letter-spacing:.06em;color:var(--dim);padding:6px 13px;border-radius:999px;border:1px solid transparent;transition:.2s}
+.steps span.on{color:var(--cream);font-weight:800;background:rgba(226,59,46,.28);border-color:rgba(226,59,46,.55)}
+.steps span.done{color:var(--muted)}

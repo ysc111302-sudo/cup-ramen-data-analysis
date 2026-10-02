@@ -160,9 +160,22 @@ corr = {
 fields = ['중량_g', '개당가격_원', '열량_kcal', '나트륨_mg', '탄수화물_g', '당류_g', '지방_g', '단백질_g']
 missing = {f: sum(1 for p in products if p[f] is None) for f in fields}
 
+# collection funnel (raw candidate counts observed on each source during scraping)
+collection = [
+    {'site': '농심몰', 'collected': 117},
+    {'site': '오뚜기몰', 'collected': 95},
+    {'site': '팔도', 'collected': 39},
+    {'site': '삼양식품', 'collected': 26},
+    {'site': '컬리', 'collected': 5},
+]
+collection_total = sum(c['collected'] for c in collection)
+
 json.dump({'products': products, 'valid_count': len(valid), 'outliers': excluded,
            'missing': missing, 'brand_stats': brand_stats,
            'category_stats': cat_stats, 'correlations': corr,
+           'collection': sorted(collection, key=lambda c: -c['collected']),
+           'collection_total': collection_total,
+           'curated_total': len(products),
            'sources': sorted({p['출처_URL'].split('/')[2] for p in products})},
           open('data/analysis.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 

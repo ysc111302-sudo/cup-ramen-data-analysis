@@ -1022,6 +1022,30 @@
    "n": 5
   }
  },
+ "collection": [
+  {
+   "site": "농심몰",
+   "collected": 117
+  },
+  {
+   "site": "오뚜기몰",
+   "collected": 95
+  },
+  {
+   "site": "팔도",
+   "collected": 39
+  },
+  {
+   "site": "삼양식품",
+   "collected": 26
+  },
+  {
+   "site": "컬리",
+   "collected": 5
+  }
+ ],
+ "collection_total": 282,
+ "curated_total": 40,
  "sources": [
   "nongshimmall.com",
   "www.otokimall.com",
