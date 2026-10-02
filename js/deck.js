@@ -163,6 +163,33 @@
       });
     },
 
+    chartPriceKcal() {
+      const ps = valid.filter(p => p.개당가격_원 && p.열량_kcal);
+      const trend = reg(ps.map(p => [p.개당가격_원, p.열량_kcal]));
+      const datasets = [{ label: '제품',
+        data: ps.map(p => ({ x: p.개당가격_원, y: p.열량_kcal, name: p.제품명 })),
+        backgroundColor: ps.map(p => BRAND_COLOR[p.브랜드]),
+        pointRadius: 9, pointBorderColor: '#171210', pointBorderWidth: 2 }];
+      if (trend) datasets.push({ label: '추세선 (r=0.41)', type: 'line', data: trend,
+        borderColor: 'rgba(253,246,236,.6)', borderWidth: 2, borderDash: [7, 7], pointRadius: 0 });
+      return new Chart(document.getElementById('chartPriceKcal'), {
+        type: 'scatter',
+        data: { datasets },
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          plugins: { legend: { position: 'bottom' },
+            tooltip: { callbacks: {
+              title: c => c[0].raw.name || '',
+              label: c => ` ${c.parsed.x.toLocaleString()}원 · ${c.parsed.y}kcal` } } },
+          scales: {
+            x: { ...axis, title: { display: true, text: '개당 가격 (원)', color: CREAM } },
+            y: { ...axis, title: { display: true, text: '열량 (kcal)', color: CREAM } }
+          },
+          animation: { duration: 900 }
+        }
+      });
+    },
+
     chartKcal() {
       const ps = valid.filter(p => p.열량_kcal).sort((a, b) => a.열량_kcal - b.열량_kcal);
       return new Chart(document.getElementById('chartKcal'), {
@@ -281,7 +308,7 @@
     3: ['chartBrands'],
     4: ['chartPrice', 'chartPrice100'],
     5: ['chartPriceWeight'],
-    6: ['chartKcal'],
+    6: ['chartPriceKcal', 'chartKcal'],
     7: ['chartSodiumBrand', 'chartWeightSodium'],
     8: ['chartCategory'],
     9: ['chartValue']

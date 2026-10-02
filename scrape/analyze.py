@@ -160,6 +160,46 @@ corr = {
 fields = ['중량_g', '개당가격_원', '열량_kcal', '나트륨_mg', '탄수화물_g', '당류_g', '지방_g', '단백질_g']
 missing = {f: sum(1 for p in products if p[f] is None) for f in fields}
 
+# ---- explicit answers to the analysis questions A~G ----
+def _brand_val(metric):
+    return {s['brand']: s[metric] for s in brand_stats if s[metric] is not None}
+_bp = _brand_val('avg_price')
+_bs = _brand_val('avg_sodium')
+_bk = _brand_val('avg_kcal')
+_p100 = sorted([p for p in valid if p['100g당_가격_원']], key=lambda p: p['100g당_가격_원'])
+_w1000 = sorted([p for p in valid if p['1000원당_중량_g']], key=lambda p: -p['1000원당_중량_g'])
+_soup = cat_stats['국물형']; _stir = cat_stats['볶음형']
+
+qa = [
+    {'id': 'A', 'q': '컵라면은 가격이 비쌀수록 양이 많은가?',
+     'answer': '아니다 — 약한 양(+)의 상관',
+     'evidence': '가격×중량 r=%.2f (n=%d)' % (corr['price_vs_weight']['r'], corr['price_vs_weight']['n'])},
+    {'id': 'B', 'q': '가격이 비쌀수록 열량·단백질도 높은가?',
+     'answer': '열량은 약한 양의 상관, 단백질은 무관',
+     'evidence': '가격×열량 r=%.2f (n=%d) · 가격×단백질 r=%.2f (n=%d)' % (
+         corr['price_vs_kcal']['r'], corr['price_vs_kcal']['n'],
+         corr['price_vs_protein']['r'], corr['price_vs_protein']['n'])},
+    {'id': 'C', 'q': '브랜드별 평균 가격에 차이가 있는가?',
+     'answer': '차이가 작다 (최대 약 200원)',
+     'evidence': ' · '.join('%s %s원' % (b, format(int(v), ',')) for b, v in _bp.items())},
+    {'id': 'D', 'q': '브랜드별 나트륨 함량에 차이가 있는가?',
+     'answer': '차이가 있다 (팔도가 약 30% 높음)',
+     'evidence': ' · '.join('%s %smg' % (b, format(int(v), ',')) for b, v in _bs.items())},
+    {'id': 'E', 'q': '중량이 큰 제품일수록 나트륨도 증가하는가?',
+     'answer': '그렇다 — 강한 양의 상관 (인과 아님)',
+     'evidence': '중량×나트륨 r=%.2f (n=%d)' % (corr['weight_vs_sodium']['r'], corr['weight_vs_sodium']['n'])},
+    {'id': 'F', 'q': '국물형과 볶음형의 영양성분 차이는?',
+     'answer': '국물형은 나트륨, 볶음형은 당류가 높음',
+     'evidence': '나트륨 국물 %s vs 볶음 %s · 당류 %.1f vs %.1f' % (
+         format(int(_soup['avg_sodium']), ','), format(int(_stir['avg_sodium']), ','),
+         _soup['avg_sugar'], _stir['avg_sugar'])},
+    {'id': 'G', 'q': '가격 대비 양이 많은 제품의 특징은?',
+     'answer': '대용량·저가 라인 (100g당 가격 최저)',
+     'evidence': '최저 %s %s원/100g · 1000원당 중량 최고 %s %sg' % (
+         _p100[0]['브랜드'], format(_p100[0]['100g당_가격_원'], ',.0f'),
+         _w1000[0]['브랜드'], _w1000[0]['1000원당_중량_g'])},
+]
+
 # collection funnel (raw candidate counts observed on each source during scraping)
 collection = [
     {'site': '농심몰', 'collected': 117},
@@ -176,6 +216,7 @@ json.dump({'products': products, 'valid_count': len(valid), 'outliers': excluded
            'collection': sorted(collection, key=lambda c: -c['collected']),
            'collection_total': collection_total,
            'curated_total': len(products),
+           'qa': qa,
            'sources': sorted({p['출처_URL'].split('/')[2] for p in products})},
           open('data/analysis.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 

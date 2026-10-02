@@ -169,6 +169,13 @@ body.static .cover-art img{animation:none}
   padding:11px 16px;border-radius:0 12px 12px 0}
 .chart-note b{color:var(--yellow)}
 
+/* question traceability badges + A~G summary strip */
+.qbadge{display:inline-block;font-size:13px;font-weight:900;letter-spacing:.06em;color:#171210;background:var(--yellow);border-radius:6px;padding:2px 8px;margin-right:8px;vertical-align:middle}
+.qa-strip{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:26px}
+.qa-t{font-weight:900;color:var(--orange);font-size:16px;letter-spacing:.08em;margin-right:4px}
+.qa-chip{font-size:15px;color:var(--muted);background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:8px 14px;white-space:nowrap}
+.qa-chip b{color:var(--yellow);margin-right:6px}
+
 /* key-insight headline banner */
 .key-banner{font-size:30px;font-weight:700;color:var(--muted);margin-bottom:26px;
   padding:20px 28px;border-radius:18px;border:1px solid rgba(247,165,49,.35);

@@ -101,6 +101,7 @@
           <div class="stat reveal" style="--d:4"><span class="stat-v">103<span class="unit">g</span></span><span class="stat-l">평균 중량</span></div>
         </div>
       </div>
+      <div class="qa-strip reveal" style="--d:5"><span class="qa-t">질문 A–G → 결과</span><span class="qa-chip"><b>A</b>가격↔중량 약함(r0.41)</span><span class="qa-chip"><b>B</b>가격↔열량 약함(r0.41)</span><span class="qa-chip"><b>C</b>브랜드 가격차 ~200원</span><span class="qa-chip"><b>D</b>팔도 나트륨 +30%</span><span class="qa-chip"><b>E</b>중량↔나트륨 강함(r0.71)</span><span class="qa-chip"><b>F</b>국물 나트륨↑·볶음 당류↑</span><span class="qa-chip"><b>G</b>최저 1,005원/100g</span></div>
     </section>
 
     <!-- 5. PRICE ANALYSIS (발견) -->
@@ -110,7 +111,7 @@
         <div class="panel reveal" style="--d:0">
           <h3 class="panel-title">평균 개당가격 <em>원</em></h3>
           <div class="chart-box" style="height:250px"><canvas id="chartPrice"></canvas></div>
-          <p class="chart-note">평균 1,353~1,550원 · 차이는 <b>약 200원</b>뿐</p>
+          <p class="chart-note"><span class="qbadge">Q3</span>평균 1,353~1,550원 · 차이는 <b>약 200원</b>뿐</p>
         </div>
         <div class="panel reveal" style="--d:1">
           <h3 class="panel-title">평균 100g당 가격 <em>원/100g</em></h3>
@@ -131,7 +132,7 @@
         <div class="panel reveal" style="--d:0">
           <h3 class="panel-title">가격 × 중량 분포 <em>32개 제품</em></h3>
           <div class="chart-box" style="height:300px"><canvas id="chartPriceWeight"></canvas></div>
-          <p class="chart-note">상관 <b>r = 0.41</b> · 같은 1,400원대에서 중량이 2배 이상 벌어진다</p>
+          <p class="chart-note"><span class="qbadge">Q1</span>상관 <b>r = 0.41</b> · 같은 1,400원대에서 중량이 2배 이상 벌어진다</p>
         </div>
         <div class="side-facts">
           <div class="big-r reveal" style="--d:1"><span class="big-r-v">r = 0.41</span><span class="big-r-l">Pearson 상관 (n=31, 이상치 1개 제외)</span></div>
@@ -150,15 +151,15 @@
       <div class="split">
         <div class="panel reveal" style="--d:0">
           <h3 class="panel-title">제품별 1회 제공 열량 <em>kcal</em></h3>
-          <div class="chart-box" style="height:330px"><canvas id="chartKcal"></canvas></div>
-          <p class="chart-note">중량이 큰 제품일수록 열량도 높은 경향 · 가격×열량 <b>r = 0.41</b>(표본 5)</p>
+          <div class="chart-box" style="height:360px"><canvas id="chartKcal"></canvas></div>
+          <p class="chart-note">최저 <b>280kcal</b>(컵 불닭볶음면) ~ 최고 <b>575kcal</b>(4가지치즈불닭) · 대부분 400~500kcal</p>
         </div>
         <div class="side-facts">
-          <div class="big-r reveal" style="--d:1"><span class="big-r-v count" data-target="280">0</span><span class="big-r-l">최저 · 삼양 컵 불닭볶음면 (70g)</span></div>
-          <div class="big-r reveal" style="--d:2"><span class="big-r-v">575</span><span class="big-r-l">최고 · 삼양 4가지치즈불닭 (145g)</span></div>
-          <ul class="facts reveal" style="--d:3">
-            <li>국물형·볶음형 모두 <b>400~500kcal</b>에 몰려 있음</li>
-          </ul>
+          <div class="panel reveal" style="--d:1">
+            <h3 class="panel-title">가격 × 열량 분포 <em>n=5</em></h3>
+            <div class="chart-box" style="height:300px"><canvas id="chartPriceKcal"></canvas></div>
+            <p class="chart-note"><span class="qbadge">Q2</span>가격이 비쌀수록 열량도 약간 높다 <b>r = 0.41</b> (표본 작음 · 참고용)</p>
+          </div>
         </div>
       </div>
     </section>
@@ -170,12 +171,12 @@
         <div class="panel reveal" style="--d:0">
           <h3 class="panel-title">브랜드별 평균 나트륨 <em>mg</em></h3>
           <div class="chart-box" style="height:240px"><canvas id="chartSodiumBrand"></canvas></div>
-          <p class="chart-note">팔도 <b>1,516mg</b> &gt; 삼양 1,166mg (<b>+30%</b>)</p>
+          <p class="chart-note"><span class="qbadge">Q4</span>팔도 <b>1,516mg</b> &gt; 삼양 1,166mg (<b>+30%</b>)</p>
         </div>
         <div class="panel reveal" style="--d:1">
           <h3 class="panel-title">중량 × 나트륨 분포 <em>n=5</em></h3>
           <div class="chart-box" style="height:240px"><canvas id="chartWeightSodium"></canvas></div>
-          <p class="chart-note">중량↑ → 나트륨↑ <b>r = 0.71</b> (삼양 5종)</p>
+          <p class="chart-note"><span class="qbadge">Q5</span>중량↑ → 나트륨↑ <b>r = 0.71</b> (삼양 5종)</p>
         </div>
       </div>
       <p class="note reveal" style="--d:2">중량이 커지면 나트륨도 함께 커지는 경향(상관관계)이며, 인과관계로 해석해서는 안 됩니다.</p>
@@ -188,7 +189,7 @@
         <div class="panel reveal" style="--d:0">
           <h3 class="panel-title">영양소 평균 비교 <em>g</em></h3>
           <div class="chart-box" style="height:270px"><canvas id="chartCategory"></canvas></div>
-          <p class="chart-note">볶음형 당류가 국물형의 <b>약 2.3배</b> · 탄수화물·단백질은 비슷</p>
+          <p class="chart-note"><span class="qbadge">Q6</span>볶음형 당류가 국물형의 <b>약 2.3배</b> · 탄수화물·단백질은 비슷</p>
         </div>
         <div class="side-facts">
           <div class="big-r reveal" style="--d:1"><span class="big-r-v">+31%</span><span class="big-r-l">국물형 나트륨 1,612mg vs 볶음형 1,230mg</span></div>
@@ -206,7 +207,7 @@
       <div class="panel wide reveal" style="--d:0">
         <h3 class="panel-title">100g당 가격 랭킹 — 낮을수록 용량 대비 저렴 <em>원/100g</em></h3>
         <div class="chart-box" style="height:270px">        <canvas id="chartValue"></canvas></div>
-        <p class="chart-note">최저 <b>1,005원</b> ↔ 최고 <b>2,307원</b> · 같은 1,000원대에서도 <b>약 2.3배</b> 차이</p>
+        <p class="chart-note"><span class="qbadge">Q7</span>최저 <b>1,005원</b> ↔ 최고 <b>2,307원</b> · 같은 1,000원대에서도 <b>약 2.3배</b> 차이</p>
       </div>
       <div class="insight-row reveal" style="--d:1">
         <div class="insight"><span class="insight-k">최저</span>삼양 큰컵 짜짜로니 <b>1,005원/100g</b></div>
