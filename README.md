@@ -151,6 +151,22 @@ python -m http.server 8000
 
 ## 9. 이미지 에셋
 
-표지/섹션용 그래픽은 `assets/generated/`의 **SVG**로 제작했습니다.
-(이 환경에는 Nano Banana 등 이미지 생성 도구가 제공되지 않아, 실제 브랜드 패키지를
-모사하지 않는 추상 SVG 일러스트로 대체했습니다.)
+`assets/generated/`에 **동일한 visual language**(warm red/orange/cream, editorial illustration,
+no brand logo, no text)로 제작한 이미지 에셋을 배치했습니다. 브레인스토밍 단계에서
+Google Flow 사용을 시도했으나, 이 환경에서는 브라우저 자동화(로그인 세션·탭 타깃)와
+정지 이미지(webp) 자동 추출이 안정적이지 않아 **동일 스타일의 에셋을 로컬에서 생성**
+했습니다. 실제 Flow 결과물이 준비되면 **같은 파일명**으로 교체하면 그대로 반영됩니다.
+
+| 파일 | 사용 슬라이드 | 역할 |
+|---|---|---|
+| `flow-cover-hero.webp` | Slide 1 · Cover | 컵라면 + 데이터 시각화 히어로(풀블리드) |
+| `flow-problem-shelf.webp` | Slide 2 · 문제 제기 | 편의점 진열대(가격/데이터 태그) |
+| `flow-data-pipeline.webp` | Slide 3 · 데이터 수집 | Web → Crawl → Clean 파이프라인 |
+| `flow-size-comparison.webp` | Slide 6 · 가격×중량 | 작은 컵 vs 큰 컵 (그래프 보조 cue) |
+| `flow-soup-vs-stir.webp` | Slide 9 · 국물/볶음 | 좌:국물형 / 우:볶음형 대비 |
+| `flow-closing.webp` | Slide 12 · 결론 | 컵라면 + 차트 모티프 클로징 |
+
+- 생성 스크립트: `scrape/gen_assets.py`(SVG 장면) → `scrape/rasterize.py`(Chrome 렌더 → Pillow WebP)
+- 이미지 등장은 **anime.js**(`js/vendor/anime.min.js`)로 페이드/슬라이드 처리하며,
+  애니메이션이 지연·실패해도 이미지가 보이도록 안전장치(safety net)를 두었습니다.
+- 데이터 그래프가 핵심인 슬라이드(Slide 4·5·7·8·10·11)에는 이미지를 넣지 않았습니다.

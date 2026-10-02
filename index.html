@@ -12,7 +12,8 @@
 
     <!-- 1. COVER (문제 제기) -->
     <section class="slide cover" data-slide="0">
-      <img class="cover-bg" src="assets/generated/bg-warm.svg" alt="" aria-hidden="true" />
+      <img class="cover-bg" src="assets/generated/flow-cover-hero.webp" alt="컵라면과 데이터 시각화를 결합한 히어로 이미지" />
+      <div class="cover-scrim"></div>
       <div class="cover-grid">
         <div class="cover-text">
           <div class="eyebrow">웹 크롤링 기반 데이터 스토리텔링</div>
@@ -24,9 +25,6 @@
             <span>2026</span>
           </div>
         </div>
-        <div class="cover-art">
-          <img src="assets/generated/hero-cup.svg" alt="컵라면 일러스트" />
-        </div>
       </div>
       <div class="cover-foot">데이터 출처 · 농심몰 · 삼양식품 · 오뚜기몰 · 팔도 · 컬리</div>
     </section>
@@ -34,24 +32,29 @@
     <!-- 2. WHY (문제) -->
     <section class="slide" data-slide="1">
       <header class="s-head"><span class="kicker">01 · 문제 제기</span><h2>왜 컵라면 가격·영양인가?</h2></header>
-      <div class="why-grid">
-        <div class="why-card reveal" style="--d:0">
-          <div class="why-num count" data-target="40" data-suffix="종">0</div>
-          <div class="why-label">수집한 컵라면 제품</div>
-          <p>편의점·온라인에서 가장 흔히 사는 한 끼.</p>
+      <div class="why-layout">
+        <div class="asset-frame" data-anim="scale">
+          <img class="asset-img" src="assets/generated/flow-problem-shelf.webp" alt="다양한 컵라면이 진열된 편의점 선반 일러스트" />
         </div>
-        <div class="why-card reveal" style="--d:1">
-          <div class="why-num">1,080–2,180<span class="unit">원</span></div>
-          <div class="why-label">개당 판매가 범위</div>
-          <p>같은 1,000원대여도 담긴 양과 영양은 다르다.</p>
-        </div>
-        <div class="why-card reveal" style="--d:2">
-          <div class="why-num">2.3<span class="unit">배</span></div>
-          <div class="why-label">100g당 가격 최대 차이</div>
-          <p>비싼 제품이 꼭 더 “가성비”라는 보장은 없다.</p>
+        <div class="why-cards">
+          <div class="why-card reveal" style="--d:1">
+            <div class="why-num count" data-target="40" data-suffix="종">0</div>
+            <div class="why-label">수집한 컵라면 제품</div>
+            <p>편의점·온라인에서 가장 흔히 사는 한 끼.</p>
+          </div>
+          <div class="why-card reveal" style="--d:2">
+            <div class="why-num">1,080–2,180<span class="unit">원</span></div>
+            <div class="why-label">개당 판매가 범위</div>
+            <p>같은 1,000원대여도 담긴 양과 영양은 다르다.</p>
+          </div>
+          <div class="why-card reveal" style="--d:3">
+            <div class="why-num">2.3<span class="unit">배</span></div>
+            <div class="why-label">100g당 가격 최대 차이</div>
+            <p>비싼 제품이 꼭 더 “가성비”라는 보장은 없다.</p>
+          </div>
         </div>
       </div>
-      <div class="q-strip reveal" style="--d:3">
+      <div class="q-strip reveal" style="--d:4">
         <span class="q-title">이번 분석의 질문</span>
         <span class="q">Q1. 가격이 비쌀수록 양이 많을까?</span>
         <span class="q">Q2. 가격이 비쌀수록 열량·단백질도 높을까?</span>
@@ -62,27 +65,22 @@
     <!-- 3. DATA COLLECTION (데이터) -->
     <section class="slide" data-slide="2">
       <header class="s-head"><span class="kicker">02 · 데이터 수집</span><h2>Firecrawl로 5개 사이트, 후보 <b class="hl2">282건</b> 수집</h2></header>
-      <div class="pipeline reveal" style="--d:0">
-        <div class="pipe-step"><div class="pipe-no">01</div><b>수집</b><span>Firecrawl</span></div>
-        <div class="pipe-arrow">→</div>
-        <div class="pipe-step"><div class="pipe-no">02</div><b>정제·분석</b><span>Python</span></div>
-        <div class="pipe-arrow">→</div>
-        <div class="pipe-step"><div class="pipe-no">03</div><b>시각화·배포</b><span>Chart.js · GitHub Pages</span></div>
-      </div>
-      <div class="collect-grid">
+      <div class="two-chart">
+        <div class="panel" data-anim="left">
+          <h3 class="panel-title">수집 파이프라인 <em>Web → Crawl → Clean</em></h3>
+          <img class="asset-img inpanel" src="assets/generated/flow-data-pipeline.webp" alt="웹에서 크롤링해 정제 데이터로 만드는 흐름 일러스트" />
+        </div>
         <div class="panel reveal" style="--d:1">
           <h3 class="panel-title">사이트별 수집 후보 수 <em>건</em></h3>
           <div class="chart-box" style="height:230px"><canvas id="chartSources"></canvas></div>
-          <p class="chart-note">수집 후보 <b>282건</b> → 컵라면만 골라 <b>40종</b>으로 정제 (봉지라면·세트·굿즈 제외)</p>
-        </div>
-        <div class="collect-side">
-          <div class="src-card reveal" style="--d:2">
-            <h3>수집 변수</h3>
-            <p class="chips"><span>브랜드</span><span>제품명</span><span>중량</span><span>가격</span><span>묶음수량</span><span>개당가격</span><span>열량</span><span>나트륨</span><span>탄수화물</span><span>당류</span><span>지방</span><span>단백질</span><span>소컵/큰컵</span><span>국물/볶음</span><span>출처 URL</span></p>
-          </div>
-          <p class="note reveal" style="--d:3">원칙 · 동일 제품 중복 제거 · 확인 불가 값은 추정 없이 <b>null</b> · 모든 값에 <b>출처 URL</b> 보존</p>
+          <p class="chart-note">수집 후보 <b>282건</b> → 컵라면만 골라 <b>40종</b>으로 정제</p>
         </div>
       </div>
+      <div class="chips-row reveal" style="--d:2">
+        <span class="chips-t">수집 변수</span>
+        <p class="chips"><span>브랜드</span><span>제품명</span><span>중량</span><span>가격</span><span>묶음수량</span><span>개당가격</span><span>열량</span><span>나트륨</span><span>탄수화물</span><span>당류</span><span>지방</span><span>단백질</span><span>소컵/큰컵</span><span>국물/볶음</span><span>출처 URL</span></p>
+      </div>
+      <p class="note reveal" style="--d:3">원칙 · 동일 제품 중복 제거 · 확인 불가 값은 추정 없이 <b>null</b> · 모든 값에 <b>출처 URL</b> 보존</p>
     </section>
 
     <!-- 4. DATASET OVERVIEW (분석 준비) -->
@@ -135,7 +133,10 @@
           <p class="chart-note"><span class="qbadge">Q1</span>상관 <b>r = 0.41</b> · 같은 1,400원대에서 중량이 2배 이상 벌어진다</p>
         </div>
         <div class="side-facts">
-          <div class="big-r reveal" style="--d:1"><span class="big-r-v">r = 0.41</span><span class="big-r-l">Pearson 상관 (n=31, 이상치 1개 제외)</span></div>
+          <div class="asset-frame small" data-anim="right">
+            <img class="asset-img" src="assets/generated/flow-size-comparison.webp" alt="작은 컵과 큰 컵의 크기 비교 일러스트" />
+          </div>
+          <div class="big-r reveal" style="--d:2"><span class="big-r-v">r = 0.41</span><span class="big-r-l">Pearson 상관 (n=31, 이상치 1개 제외)</span></div>
           <ul class="facts reveal" style="--d:2">
             <li>1,400원대 중량 <b>62g~134g</b>로 2배 이상 차이</li>
             <li>1000원당 중량 최고 · <b>삼양 큰컵 짜짜로니</b> 99.5g</li>
@@ -185,19 +186,20 @@
     <!-- 9. SOUP VS STIR-FRIED -->
     <section class="slide" data-slide="8">
       <header class="s-head"><span class="kicker">04 · 분석 — 유형</span><h2>국물형은 나트륨, 볶음형은 당류</h2></header>
-      <div class="split">
-        <div class="panel reveal" style="--d:0">
+      <div class="two-chart">
+        <div class="panel" data-anim="left">
+          <h3 class="panel-title">국물형 vs 볶음형 <em>editorial</em></h3>
+          <img class="asset-img inpanel" src="assets/generated/flow-soup-vs-stir.webp" alt="국물형과 볶음형 컵라면을 좌우로 비교한 일러스트" />
+        </div>
+        <div class="panel reveal" style="--d:1">
           <h3 class="panel-title">영양소 평균 비교 <em>g</em></h3>
-          <div class="chart-box" style="height:270px"><canvas id="chartCategory"></canvas></div>
+          <div class="chart-box" style="height:250px"><canvas id="chartCategory"></canvas></div>
           <p class="chart-note"><span class="qbadge">Q6</span>볶음형 당류가 국물형의 <b>약 2.3배</b> · 탄수화물·단백질은 비슷</p>
         </div>
-        <div class="side-facts">
-          <div class="big-r reveal" style="--d:1"><span class="big-r-v">+31%</span><span class="big-r-l">국물형 나트륨 1,612mg vs 볶음형 1,230mg</span></div>
-          <div class="big-r reveal" style="--d:2"><span class="big-r-v">×2.3</span><span class="big-r-l">볶음형 당류 10.0g vs 국물형 4.3g</span></div>
-          <ul class="facts reveal" style="--d:3">
-            <li>국물형은 지방·나트륨이 평균적으로 더 높음</li>
-          </ul>
-        </div>
+      </div>
+      <div class="insight-row reveal" style="--d:2">
+        <div class="insight"><span class="insight-k">나트륨</span>국물형 <b>1,612mg</b> &gt; 볶음형 1,230mg (<b>+31%</b>)</div>
+        <div class="insight"><span class="insight-k">당류</span>볶음형 <b>10.0g</b> &gt; 국물형 4.3g (<b>×2.3</b>)</div>
       </div>
     </section>
 
@@ -230,7 +232,7 @@
     <!-- 12. LIMITATIONS & CONCLUSION -->
     <section class="slide conclusion" data-slide="11">
       <header class="s-head"><span class="kicker">07 · 한계 &amp; 결론</span><h2>한계를 밝히고, 결론을 정리하면</h2></header>
-      <div class="lim-grid">
+      <div class="lim-grid with-art">
         <div class="lim-col reveal" style="--d:0">
           <h3>한계 (Limitations)</h3>
           <ul>
@@ -249,6 +251,9 @@
             <span>출처 5개 사이트</span><span class="dot"></span>
             <span>그래프 9종</span>
           </div>
+        </div>
+        <div class="asset-frame reveal" style="--d:2" data-anim="right">
+          <img class="asset-img" src="assets/generated/flow-closing.webp" alt="컵라면과 데이터 시각화를 결합한 클로징 일러스트" />
         </div>
       </div>
     </section>
@@ -277,6 +282,7 @@
 </div>
 
 <script src="js/vendor/chart.umd.min.js"></script>
+<script src="js/vendor/anime.min.js"></script>
 <script src="js/data.js"></script>
 <script src="js/deck.js"></script>
 </body>

@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Data collection icon">
-  <circle cx="60" cy="60" r="56" fill="#E23B2E" opacity="0.14"/>
-  <g stroke="#E23B2E" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M34 42 q26 -18 52 0"/>
-    <path d="M34 60 q26 -18 52 0"/>
-    <path d="M34 78 q26 -18 52 0"/>
-  </g>
-  <circle cx="88" cy="30" r="9" fill="#F7A531"/>
-</svg>

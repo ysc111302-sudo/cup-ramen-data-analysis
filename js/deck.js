@@ -2,6 +2,7 @@
 (function () {
   const DATA = window.RAMEN_DATA;
   const STATIC = /[?&]static/.test(location.search);
+  document.body.classList.add('js');
   if (STATIC) document.body.classList.add('static');
   const slides = Array.from(document.querySelectorAll('.slide'));
   const deck = document.getElementById('deck');
@@ -348,6 +349,40 @@
     });
   }
 
+  const ANIM_FROM = {
+    up: { translateY: [50, 0] },
+    down: { translateY: [-50, 0] },
+    left: { translateX: [-70, 0] },
+    right: { translateX: [70, 0] },
+    scale: { scale: [0.9, 1] }
+  };
+  // anime.js entrance for image assets (and staged emphasis)
+  function animateAssets(slide) {
+    const els = slide.querySelectorAll('[data-anim]');
+    if (!els.length) return;
+    if (STATIC || typeof anime === 'undefined') {
+      els.forEach(el => { el.style.opacity = ''; });
+      return;
+    }
+    els.forEach((el, i) => {
+      const to = el.classList.contains('concl-bg') ? 0.22 : 1;
+      const opts = Object.assign({
+        targets: el, opacity: [0, to], duration: 760, delay: 120 + i * 170, easing: 'easeOutQuart'
+      }, ANIM_FROM[el.dataset.anim] || ANIM_FROM.up);
+      anime.remove(el);
+      anime(opts);
+    });
+    // safety net: never leave an asset invisible if an animation stalls
+    clearTimeout(window.__animSafety);
+    window.__animSafety = setTimeout(() => {
+      document.querySelectorAll('[data-anim]').forEach(el => {
+        if (parseFloat(getComputedStyle(el).opacity) < 0.9) {
+          el.style.opacity = el.classList.contains('concl-bg') ? '0.22' : '1';
+        }
+      });
+    }, 2400);
+  }
+
   function runCounts(slide) {
     slide.querySelectorAll('.count').forEach(el => {
       const target = +el.dataset.target; const suf = el.dataset.suffix || '';
@@ -380,6 +415,7 @@
     replayCharts(i);
     updateSteps(i);
     runCounts(slides[i]);
+    animateAssets(slides[i]);
   }
 
   function fit() {
