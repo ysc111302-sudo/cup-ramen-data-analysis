@@ -1,0 +1,11 @@
+# secrets
+.env
+
+# verification artifacts
+shots/
+
+# deps / logs
+node_modules/
+*.log
+Thumbs.db
+desktop.ini

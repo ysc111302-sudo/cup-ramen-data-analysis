@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Warm abstract background">
+  <defs>
+    <radialGradient id="w1" cx="18%" cy="22%" r="55%">
+      <stop offset="0" stop-color="#E23B2E" stop-opacity="0.30"/>
+      <stop offset="1" stop-color="#E23B2E" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="w2" cx="85%" cy="80%" r="55%">
+      <stop offset="0" stop-color="#F7A531" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#F7A531" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="w3" cx="70%" cy="12%" r="40%">
+      <stop offset="0" stop-color="#FFD166" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#FFD166" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="46" height="46" patternUnits="userSpaceOnUse">
+      <circle cx="3" cy="3" r="2.2" fill="#FFFFFF" opacity="0.05"/>
+    </pattern>
+  </defs>
+  <rect width="1920" height="1080" fill="#171210"/>
+  <rect width="1920" height="1080" fill="url(#dots)"/>
+  <rect width="1920" height="1080" fill="url(#w1)"/>
+  <rect width="1920" height="1080" fill="url(#w2)"/>
+  <rect width="1920" height="1080" fill="url(#w3)"/>
+</svg>
