@@ -1,0 +1,48 @@
+name: Deploy ramen presentation to Pages
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - ramen-v2/site/**
+      - .github/workflows/ramen-pages.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: ramen-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v6
+      - name: Validate public files
+        run: |
+          python - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          root = Path('ramen-v2/site')
+          manifest = json.loads((root / 'deployment-manifest.json').read_text())
+          expected = {r['path'] for r in manifest['files']} | {'deployment-manifest.json'}
+          actual = {p.relative_to(root).as_posix() for p in root.rglob('*') if p.is_file()}
+          assert actual == expected, 'Unexpected or missing public files'
+          for r in manifest['files']:
+              assert '..' not in Path(r['path']).parts
+              assert hashlib.sha256((root / r['path']).read_bytes()).hexdigest() == r['sha256']
+          PY
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: ramen-v2/site
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

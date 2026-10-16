@@ -1,0 +1,79 @@
+{
+  "entry": "index.html",
+  "slides": 12,
+  "photo_count": 4,
+  "concept_illustration_count": 1,
+  "source": "ramen-v2/index.html; user-provided Gemini photos; exact model and generation time unknown",
+  "files": [
+    {
+      "path": "index.html",
+      "bytes": 20492,
+      "sha256": "01d02a3f6c8b763dab67e5c9392e5bfbd5a4eb885d10995e46d1ede444f13781"
+    },
+    {
+      "path": "css/style.css",
+      "bytes": 10481,
+      "sha256": "09f6f526d19d898a28584d0cc71340df9bed896ef70d131422b3d781a6f51e67"
+    },
+    {
+      "path": "js/data.js",
+      "bytes": 34287,
+      "sha256": "3f9d1b4b934c73f08964a6e8c74ba1e473fe2a3ea44e710036db32369dd4b1ea"
+    },
+    {
+      "path": "js/deck.js",
+      "bytes": 10439,
+      "sha256": "c64eef2c383a0f8554e45f6962a0f635b07e0be73275be3fdda62b94e7055abf"
+    },
+    {
+      "path": "data/cup_ramen.csv",
+      "bytes": 5952,
+      "sha256": "373cea9a363eec7530908cba081413b6ca6cd5f4746e40b0470ffd351c58a214"
+    },
+    {
+      "path": "data/analysis.json",
+      "bytes": 34266,
+      "sha256": "bfea2583d2678153ad1eebcf9cfed268a8e19d972b6d104a0e100876b2f44735"
+    },
+    {
+      "path": "assets/generated/flow-soup-vs-stir.webp",
+      "bytes": 34082,
+      "sha256": "28b1e04040cbbd51b19a76f9bd5cb280fd3230d61e73df58c9a605288834e766"
+    },
+    {
+      "path": "assets/generated/nano-cover-hero.webp",
+      "bytes": 430836,
+      "sha256": "3b25028b1caabf2360c33c0ceea336e21094057f2ad4b7236bc558bf691cf8d1"
+    },
+    {
+      "path": "assets/generated/nano-problem-shelf.webp",
+      "bytes": 576520,
+      "sha256": "5f929edd35871ed1efdeaa7462a2d44ab66d61bc6a0357d5578791cb639195ae"
+    },
+    {
+      "path": "assets/generated/nano-size-comparison.webp",
+      "bytes": 405528,
+      "sha256": "6c6fd7e5a69d02e55e190da48526b559ff810849b0681ba7c008a9a82988de50"
+    },
+    {
+      "path": "assets/generated/nano-closing.webp",
+      "bytes": 326066,
+      "sha256": "929f118520eebaa724a1bb2fe894d9c32478161d18e392d3c19e4763256761fa"
+    },
+    {
+      "path": "references/S03_ramen_audit.md",
+      "bytes": 5574,
+      "sha256": "fbf8f20649cdf3f3c8c2a753598087ca842e95b22ef3ad4f7bdd35790ef19b97"
+    },
+    {
+      "path": "references/S05_user_gemini_images.md",
+      "bytes": 1700,
+      "sha256": "535f07075e59ed9376829b7c2c6dc92be7968c8c1bdb57ebde8bebcd5d46c445"
+    },
+    {
+      "path": ".nojekyll",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

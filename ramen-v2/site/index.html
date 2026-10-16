@@ -1,0 +1,115 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>컵라면, 가격표 너머를 읽다 · 데이터 스토리텔링</title><link rel="icon" href="data:,"><link rel="stylesheet" href="css/style.css"></head><body><div class="stage"><main class="deck" id="deck" aria-label="컵라면 데이터 발표 12장"><section class="slide cover" data-slide="0" aria-labelledby="title-1">
+<header class="s-head"><span class="kicker">CUP NOODLE JOURNAL / 00 · 질문의 시작</span><h2 id="title-1">편의점 컵라면을 데이터로 읽다</h2></header>
+
+<img class="hero-image photo" src="assets/generated/nano-cover-hero.webp" alt="오른쪽 컵라면 한 개와 왼쪽 여백을 둔 AI 생성 개념 사진"><div class="hero-wash"></div>
+<div class="cover-content"><h1>같은 <b>1,080원</b>,<br>65g과 104g.<br>무엇을 고를까?</h1>
+<p class="cover-sub">컵라면 40종의 가격·중량·영양표시를 읽는<br>데이터 스토리텔링</p>
+<p class="cover-example">진라면 매운맛 컵 65g ↔ 육개장 컵 104g<br>오뚜기몰 수집 판매가격 · 두 제품 모두 1,080원</p></div>
+<span class="image-credit">AI 생성 개념 사진 · 실제 상품 사진 아님</span>
+
+<footer class="source"><a href="references/S03_ramen_audit.md" target="_blank" rel="noopener">[S02·S03] 보존된 원자료 · 재계산 기록</a><a class="image-source" href="references/S05_user_gemini_images.md" target="_blank" rel="noopener">[S05] 사용자 제공 Gemini 이미지</a><span class="folio">01 / 12</span></footer>
+<aside class="notes">온라인 판매가격이며 편의점 현장가격이 아니다. 동일 가격 실제 사례로 질문을 시작한다. 맛·선호·만족도는 측정하지 않았다.</aside></section>
+<section class="slide " data-slide="1" aria-labelledby="title-2">
+<header class="s-head"><span class="kicker">CUP NOODLE JOURNAL / 01 · 문제 제기</span><h2 id="title-2">가격표만으로 <b>얼마나 알 수 있을까?</b></h2></header>
+<div class="body split"><figure class="asset-frame shelf"><img class="photo" src="assets/generated/nano-problem-shelf.webp" alt="다양한 컵라면이 놓인 편의점 진열대의 AI 생성 개념 사진"><figcaption title="사용자 제공 Gemini 생성 이미지 · 모델·생성 시각 미확인">AI 생성 개념 사진 · 실제 상품 사진 아님</figcaption></figure>
+<div class="questions"><div class="question"><span>01</span><div>가격이 높으면 양도 많을까?<small>개당가격과 중량을 함께 비교한다.</small></div></div>
+<div class="question"><span>02</span><div>가격으로 영양도 알 수 있을까?<small>열량·단백질·나트륨을 구분해서 본다.</small></div></div>
+<div class="question"><span>03</span><div>비교의 기준을 바꾸면?<small>개당 가격에서 100g당 가격으로.</small></div></div></div></div>
+<p class="interpretation">이번 분석의 ‘가성비’는 <b>용량 대비 가격</b>을 뜻한다. 맛이나 만족도를 평가하지 않는다.</p>
+<footer class="source"><a href="references/S03_ramen_audit.md" target="_blank" rel="noopener">[S02·S03] 보존된 원자료 · 재계산 기록</a><a class="image-source" href="references/S05_user_gemini_images.md" target="_blank" rel="noopener">[S05] 사용자 제공 Gemini 이미지</a><span class="folio">02 / 12</span></footer>
+<aside class="notes"></aside></section>
+<section class="slide " data-slide="2" aria-labelledby="title-3">
+<header class="s-head"><span class="kicker">CUP NOODLE JOURNAL / 02 · 수집과 정제</span><h2 id="title-3">보존된 원본 <b>202행</b>에서 컵라면 <b>40종</b>으로</h2></header>
+<div class="body two-chart"><div>
+<div class="flow"><div><strong>202</strong><small>원본 CSV 행</small></div><span class="arrow">→</span><div><strong style="color:var(--red)">40</strong><small>분석용 선정 제품</small></div></div>
+<ol class="process"><li><span>01</span>컵라면·용기면 선정 목록 적용</li><li><span>02</span>동일 제품은 묶음수량이 적은 행 선택</li><li><span>03</span>묶음 판매가격 ÷ 수량 → 개당가격</li><li><span>04</span>확인되지 않은 값은 결측으로 보존</li></ol></div>
+<div class="panel"><h3>수집·해석에서 구분할 것</h3><p class="callout">가격·영양 출처는 제조사·공식몰.<small>농심몰 · 오뚜기몰 · 삼양식품 · 팔도<br>컬리는 원본 후보에 포함, 최종 40종 출처는 4곳.</small></p>
+<p class="meta" style="margin-top:35px">정확한 수집일 · 할인·배송비 처리 기준은<br>보존 자료에서 확인되지 않았다.</p>
+<p class="meta" style="margin-top:26px">기존 ‘282건’은 스크립트의 후보 수 기록.<br>원본 202행과의 차이는 검증 대기.</p></div></div>
+<p class="interpretation">이 자료는 <b>선정된 온라인 상품 표본</b>이며, 편의점 전체 상품이나 현재 판매가를 대표하지 않는다.</p>
+<footer class="source"><a href="references/S03_ramen_audit.md" target="_blank" rel="noopener">[S02·S03] 보존된 원자료 · 재계산 기록</a><span class="folio">03 / 12</span></footer>
+<aside class="notes">수집은 기존 Firecrawl 산출물이다. 수집일을 파일 수정일로 추정하지 않는다. 중간 단계별 제거 수는 로그가 없으므로 그리지 않는다.</aside></section>
+<section class="slide " data-slide="3" aria-labelledby="title-4">
+<header class="s-head"><span class="kicker">CUP NOODLE JOURNAL / 02 · 데이터의 범위</span><h2 id="title-4">40종이지만, <b>질문마다 표본이 다르다</b></h2></header>
+<div class="body two-chart">
+<div class="panel"><h3>선정 제품의 브랜드 구성</h3><div class="chart-box " data-chart="brandCount" aria-label="선정 제품의 브랜드 구성"></div><p class="chart-note">전체 n=40 · 농심 12 / 오뚜기 10 / 삼양 10 / 팔도 8</p></div>
+<div class="panel"><h3>분석에 쓸 수 있는 값과 결측</h3><table class="missing-table"><thead><tr><th>분석 항목</th><th>보유</th><th>결측</th></tr></thead><tbody><tr><td>가격 + 중량</td><td>32종</td><td>8종</td></tr><tr><td>열량·영양성분</td><td>14종</td><td>26종</td></tr><tr><td>가격 + 열량</td><td>6종</td><td>34종</td></tr></tbody></table>
+<p class="meta">영양 보유: 삼양 6종 · 팔도 8종<br>팔도는 가격·중량이 없어 가격 분석에서 빠진다.</p></div></div>
+<p class="interpretation">결측은 0이 아니다. <b>해당 값이 확인되는 제품만</b> 각 분석에 사용한다.</p>
+<footer class="source"><a href="references/S03_ramen_audit.md" target="_blank" rel="noopener">[S02·S03] 보존된 원자료 · 재계산 기록</a><span class="folio">04 / 12</span></footer>
+<aside class="notes"></aside></section>
+<section class="slide " data-slide="4" aria-labelledby="title-5">
+<header class="s-head"><span class="kicker">CUP NOODLE JOURNAL / 03 · 가격 비교</span><h2 id="title-5">개당 평균은 비슷해도, <b>용량 기준은 다르다</b></h2></header>
+<div class="body two-chart">
+<div class="panel"><h3>브랜드별 평균 개당가격 · 원/개</h3><div class="chart-box " data-chart="priceBrand" aria-label="브랜드별 평균 개당가격 · 원/개"></div><p class="chart-note">전체 가격 보유 n=32 · 농심 n=12 / 오뚜기 n=10 / 삼양 n=10</p></div>
+<div class="panel"><h3>브랜드별 평균 100g당 가격 · 원/100g</h3><div class="chart-box " data-chart="price100" aria-label="브랜드별 평균 100g당 가격 · 원/100g"></div><p class="chart-note">제품별 (판매가격 ÷ 묶음수량 ÷ 중량 × 100)의 단순평균</p></div></div>
+<p class="interpretation">전체 표본의 개당 평균은 약 1,509~1,550원. <b>용량을 맞추면 브랜드 간 차이가 더 드러난다.</b></p>
+<footer class="source"><a href="references/S03_ramen_audit.md" target="_blank" rel="noopener">[S02·S03] 보존된 원자료 · 재계산 기록</a><span class="folio">05 / 12</span></footer>
+<aside class="notes">팔도 가격 결측 n=8 제외. 주 분석은 가격 이상치도 포함한다. 브랜드 구색 차이가 있으므로 브랜드 효과로 해석하지 않는다. 평균은 제품별 동일 가중치, 비율의 평균이다.</aside></section>
+<section class="slide " data-slide="5" aria-labelledby="title-6">
+<header class="s-head"><span class="kicker">CUP NOODLE JOURNAL / 03 · 가격 × 중량</span><h2 id="title-6">가격 하나로 <b>중량을 설명하기는 어렵다</b></h2></header>
+<div class="body split wide-left">
+<div class="panel"><h3>가격 × 중량 · 전체 n=32</h3><div class="chart-box tall" data-chart="priceWeight" aria-label="가격 × 중량 · 전체 n=32"></div><p class="chart-note">모든 가격·중량 보유 제품 포함 · 점선은 전체 표본의 선형 추세</p></div>
+<div class="side-facts"><div><span class="badge">주 분석 · n=32</span><p class="big-number">0.339<small> r</small></p><p class="meta">Pearson 상관 · 양의 관계가 관찰됨</p></div>
+<p class="callout">동일 1,080원에서도<br><b>65g ↔ 104g</b><small>진라면 매운맛 컵 / 육개장 컵</small></p>
+<p class="meta">민감도 분석: 1종 제외 시 n=31 · r=0.411<br>제외 기준: 100g당 가격 &gt; Q3 + 1.5·IQR<br>상한 2,761.57원/100g · 오류로 단정하지 않음</p>
+<figure class="asset-frame "><img class="photo" src="assets/generated/nano-size-comparison.webp" alt="작은 컵과 큰 컵을 나란히 놓은 AI 생성 개념 사진 · 정확한 중량비를 의미하지 않음"><figcaption title="사용자 제공 Gemini 생성 이미지 · 모델·생성 시각 미확인">AI 생성 개념 사진 · 실제 상품 사진 아님</figcaption></figure></div></div>
+<p class="interpretation">가격과 중량은 함께 움직이기도 하지만, <b>개별 제품의 중량은 직접 확인해야 한다.</b></p>
+<footer class="source"><a href="references/S03_ramen_audit.md" target="_blank" rel="noopener">[S02·S03] 보존된 원자료 · 재계산 기록</a><a class="image-source" href="references/S05_user_gemini_images.md" target="_blank" rel="noopener">[S05] 사용자 제공 Gemini 이미지</a><span class="folio">06 / 12</span></footer>
+<aside class="notes">제외 규칙: 전체 가격 보유 32종의 100g당 가격, exclusive quartiles Q3+1.5IQR 초과. 상한 2761.57원/100g. 큰컵 치즈불닭볶음면 2767.86원/100g만 해당. 오류 증거는 없으므로 본 산점도는 포함. 개념 사진은 실제 중량비를 증명하지 않는다.</aside></section>
+<section class="slide " data-slide="6" aria-labelledby="title-7">
+<header class="s-head"><span class="kicker">CUP NOODLE JOURNAL / 03 · 열량과 가격</span><h2 id="title-7">열량 범위는 넓고, <b>가격과의 연결은 불확실하다</b></h2></header>
+<div class="body split wide-left">
+<div class="panel"><h3>제품별 영양표시 열량 · kcal/개 · n=14</h3><div class="chart-box tall" data-chart="kcal" aria-label="제품별 영양표시 열량 · kcal/개 · n=14"></div><p class="chart-note">삼양 6종 · 팔도 8종 / 1개당 기록 · 원라벨 대조 대기</p></div>
+<div><div class="panel"><h3>가격 × 열량 · 삼양 6종</h3><div class="chart-box compact" data-chart="priceKcal" aria-label="가격 × 열량 · 삼양 6종"></div><p class="chart-note">전체 n=6 · r=0.157 / 가격·열량 동시 보유 제품만</p></div>
+<p class="callout" style="margin-top:26px">제외에 따라 달라지는 결과<small>가격 이상치 제외: n=5 · r=0.405<br>단백질 r=−0.027 (n=6), 제외 시 −0.136 (n=5)<br><b>소표본 탐색 결과 · 전체 컵라면으로 일반화 불가</b></small></p></div></div>
+<p class="interpretation">영양표시 열량은 280~535kcal. <b>가격으로 열량·단백질을 예측한다는 결론은 보류한다.</b></p>
+<footer class="source"><a href="references/S03_ramen_audit.md" target="_blank" rel="noopener">[S02·S03] 보존된 원자료 · 재계산 기록</a><span class="folio">07 / 12</span></footer>
+<aside class="notes">영양값은 기존 파서의 제품별 기록을 1개당으로 해석. 포장 단위 원라벨 대조는 미완료. 팔도 중량 결측이므로 전체 14종을 100g당 열량으로 비교하지 않는다.</aside></section>
+<section class="slide " data-slide="7" aria-labelledby="title-8">
+<header class="s-head"><span class="kicker">CUP NOODLE JOURNAL / 03 · 나트륨</span><h2 id="title-8">나트륨은 <b>1개당 표시량과 중량</b>을 함께 읽자</h2></header>
+<div class="body two-chart">
+<div class="panel"><h3>브랜드별 평균 나트륨 · mg/개</h3><div class="chart-box " data-chart="sodiumBrand" aria-label="브랜드별 평균 나트륨 · mg/개"></div><p class="chart-note">영양 보유 n=14 · 삼양 n=6 / 팔도 n=8 / 제품 구성·중량 미보정</p></div>
+<div><div class="panel"><h3>중량 × 나트륨 · 삼양 6종</h3><div class="chart-box " data-chart="weightSodium" aria-label="중량 × 나트륨 · 삼양 6종"></div><p class="chart-note">전체 n=6 · r=0.687 / 이상치 제외 n=5 · r=0.714</p></div>
+<p class="callout" style="margin-top:20px">탐색적 관계 · 인과관계 아님<small>n=5·6 모두 삼양 일부 제품에 한정.<br>중량 보정 나트륨은 이 6종에서 895.7~1,472.7mg/100g.</small></p></div></div>
+<p class="interpretation">브랜드 평균 차이는 <b>선정 제품의 차이</b>이기도 하다. 실제 섭취 나트륨을 측정한 결과는 아니다.</p>
+<footer class="source"><a href="references/S03_ramen_audit.md" target="_blank" rel="noopener">[S02·S03] 보존된 원자료 · 재계산 기록</a><span class="folio">08 / 12</span></footer>
+<aside class="notes"></aside></section>
+<section class="slide " data-slide="8" aria-labelledby="title-9">
+<header class="s-head"><span class="kicker">CUP NOODLE JOURNAL / 03 · 국물형과 볶음형</span><h2 id="title-9">유형별 차이는 보이지만, <b>분류 확인이 먼저다</b></h2></header>
+<div class="body"><div class="category-layout"><figure class="asset-frame "><img src="assets/generated/flow-soup-vs-stir.webp" alt="국물형과 볶음형의 개념 삽화"><figcaption>개념 삽화 · 사진 미제공</figcaption></figure>
+<div class="panel"><h3>나트륨 평균 · mg/개</h3><div class="chart-box " data-chart="categorySodium" aria-label="나트륨 평균 · mg/개"></div><p class="chart-note">국물형 n=6 / 볶음형 n=6 · 원자료 유형 기준</p></div>
+<div class="panel"><h3>당류 평균 · g/개</h3><div class="chart-box " data-chart="categorySugar" aria-label="당류 평균 · g/개"></div><p class="chart-note">국물형 n=6 / 볶음형 n=6 · 원자료 유형 기준</p></div></div>
+<p class="meta" style="margin-top:28px">영양 14종 중 유형 미분류 2종 제외 · 브랜드 구성과 중량 미보정 · 유형별로 서로 다른 제품 비교</p>
+<p class="callout" style="margin-top:25px">잠정 탐색값: 국물형은 나트륨, 볶음형은 당류 평균이 높다.<small>‘큰컵 간짬뽕’의 국물형 표기 등 원자료 분류는 재확인 필요. 분류를 임의 수정하지 않았다.</small></p></div>
+<p class="interpretation">이는 <b>현재 분류된 표본의 기술통계</b>다. 유형 전체의 특성이나 실제 섭취량 차이로 확대하지 않는다.</p>
+<footer class="source"><a href="references/S03_ramen_audit.md" target="_blank" rel="noopener">[S02·S03] 보존된 원자료 · 재계산 기록</a><span class="folio">09 / 12</span></footer>
+<aside class="notes"></aside></section>
+<section class="slide " data-slide="9" aria-labelledby="title-10">
+<header class="s-head"><span class="kicker">CUP NOODLE JOURNAL / 04 · 비교 기준 바꾸기</span><h2 id="title-10">용량 대비 가격은 <b>100g으로 맞춰 비교한다</b></h2></header>
+<div class="body">
+<div class="panel"><h3>100g당 가격 순위 · 원/100g · 전체 n=32 중 양끝 각 5종</h3><div class="chart-box tall" data-chart="valueRank" aria-label="100g당 가격 순위 · 원/100g · 전체 n=32 중 양끝 각 5종"></div><p class="chart-note">오름차순 · 가운데 22종은 생략 / 전체 최소 1,005원 ↔ 최대 2,768원 / 약 2.75배</p></div>
+<p class="meta">가격 이상치도 포함. 큰컵 치즈불닭볶음면 제외 시 n=31, 최대는 너구리컵 2,306원/100g.</p></div>
+<p class="interpretation">낮을수록 <b>용량 대비 저렴하다</b>. 이 순위는 맛·영양 균형·만족도의 순위가 아니다.</p>
+<footer class="source"><a href="references/S03_ramen_audit.md" target="_blank" rel="noopener">[S02·S03] 보존된 원자료 · 재계산 기록</a><span class="folio">10 / 12</span></footer>
+<aside class="notes"></aside></section>
+<section class="slide " data-slide="10" aria-labelledby="title-11">
+<header class="s-head"><span class="kicker">CUP NOODLE JOURNAL / 04 · 발견 정리</span><h2 id="title-11">데이터가 허용하는 결론은 <b>여기까지</b></h2></header>
+<div class="body summary-list">
+<div class="summary-row"><span class="num">01</span><h3>중량은 따로 확인</h3><p>같은 1,080원에도 65g과 104g.<small>가격·중량 n=32 · Pearson r=0.339 / 제외 후 n=31 · r=0.411</small></p></div>
+<div class="summary-row"><span class="num">02</span><h3>비교 기준은 100g</h3><p>제품별 용량 대비 가격의 전체 범위는 약 2.75배.<small>가격·중량 n=32 · 이상치도 포함 / 맛·만족도는 측정하지 않음</small></p></div>
+<div class="summary-row"><span class="num">03</span><h3>영양 해석은 신중히</h3><p>가격과 영양의 관계는 삼양 6종의 탐색 결과.<small>제외 후 n=5 분석도 일반화 불가 / 유형 분류·영양 라벨 대조 대기</small></p></div></div>
+<p class="interpretation">가격은 출발점이다. <b>용량과 영양표시를 함께 읽어야 비교의 범위가 넓어진다.</b></p>
+<footer class="source"><a href="references/S03_ramen_audit.md" target="_blank" rel="noopener">[S02·S03] 보존된 원자료 · 재계산 기록</a><span class="folio">11 / 12</span></footer>
+<aside class="notes"></aside></section>
+<section class="slide conclusion" data-slide="11" aria-labelledby="title-12">
+<header class="s-head"><span class="kicker">CUP NOODLE JOURNAL / 05 · 한계와 결론</span><h2 id="title-12">다음 한 끼를 고를 때</h2></header>
+
+<img class="hero-image photo" src="assets/generated/nano-closing.webp" alt="컵라면 한 개와 젓가락을 배치한 AI 생성 결론 사진"><div class="hero-wash"></div>
+<div class="cover-content"><h2 class="takeaway">가격만으로<br>용량과 영양을<br>판단하기 어렵다.</h2>
+<p class="take-sub"><b style="color:var(--red)">용량 대비 가격</b>과 <b style="color:var(--red)">영양표시</b>를<br>함께 보자.</p>
+<div class="limitations">분석의 경계<br>선정 표본 40종 · 가격·중량 32종 · 영양 14종<br>가격–영양은 삼양 6종, 제외 후 5종의 탐색 결과<br>수집일·할인·배송비 기준 미확인 / 유형·원라벨 검증 대기</div></div>
+<span class="image-credit">AI 생성 개념 사진 · 실제 상품 사진 아님</span>
+
+<footer class="source"><a href="references/S03_ramen_audit.md" target="_blank" rel="noopener">[S02·S03] 보존된 원자료 · 재계산 기록</a><a class="image-source" href="references/S05_user_gemini_images.md" target="_blank" rel="noopener">[S05] 사용자 제공 Gemini 이미지</a><span class="folio">12 / 12</span></footer>
+<aside class="notes"></aside></section></main><nav class="hud" aria-label="발표 조작"><div class="progress"><div class="progress-bar" id="progressBar"></div></div><div class="hud-left"><button class="hud-btn" id="prevBtn" aria-label="이전 슬라이드">‹</button><button class="hud-btn" id="nextBtn" aria-label="다음 슬라이드">›</button><span aria-live="polite"><b id="curNo">1</b> / 12</span></div><div class="steps" id="steps"><span>문제</span><span>데이터</span><span>분석</span><span>발견</span><span>결론</span></div><div class="hud-right"><span class="hint">← → 이동 · Home / End · F 전체화면</span><button class="hud-btn" id="fsBtn" aria-label="전체화면">⛶</button></div></nav></div><script src="js/data.js"></script><script src="js/deck.js"></script></body></html>
