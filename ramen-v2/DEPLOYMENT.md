@@ -1,5 +1,9 @@
 # 컵라면 발표 GitHub Pages
 
+제출 URL: https://ysc111302-sudo.github.io/cup-ramen-data-analysis/
+
+2026-10-16 배포 성공. 공개 주소에서 1920×1080·1366×768의 전체12장, SVG11개, 사진4개·삽화1개, 방향키·버튼·키보드/버튼 전체화면을 검증했다. 콘솔 오류·자원 실패·잘림·겹침·가로넘침0건. 배포 실행: https://github.com/ysc111302-sudo/cup-ramen-data-analysis/actions/runs/38855950871
+
 기존 원격 저장소: https://github.com/ysc111302-sudo/cup-ramen-data-analysis
 
 배포 진입점은 `ramen-v2/site/index.html`이며, 현재 `ramen-v2/index.html`의 발표 내용을 복사해 만든다. 기존 루트 덱·다른 프로젝트·커밋 이력은 유지한다. GitHub Actions는 `ramen-v2/site`만 Pages에 게시한다.
